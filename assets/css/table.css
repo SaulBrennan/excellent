@@ -1,0 +1,28 @@
+.status-dropdown {
+    width: 100%;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+#anomaliesTable thead th {
+text-align: center;
+}
+
+.card-header-custom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.icon-container {
+    cursor: pointer;
+}
+.icon-container i {
+    color: #012970;
+    font-size: 30px;
+    height: 30px;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle; 
+}

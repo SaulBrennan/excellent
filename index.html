@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Teev AI | Anomalies Worklist</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/table.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+  </head>
+</head>
+<body>
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/burns.jpeg" alt="">
+      </a>
+    </div>
+  </header>
+  <main id="main" class="main">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <form class="mt-4">
+<div id="privacyCard" class="card mb-4" style="margin-top: -10px; margin-bottom: -10px;">
+  <div class="card-body">
+    <div class="mt-4">
+      <ul class="list-unstyled">
+        <li class="mb-2">
+          <span class="text-primary me-2">🔒</span>
+          <strong>Privacy first!</strong> No accounts, no names.
+        </li>
+        <li class="mb-2">
+          <span class="text-primary me-2">💼</span>
+          <strong>Financial info?</strong> Used for advice only.
+        </li>
+        <li class="mb-2">
+          <span class="text-primary me-2">🔍</span>
+          <strong>Nothing stored</strong> or authenticated.
+        </li>
+        <li class="mb-2">
+          <span class="text-primary me-2">💨</span>
+          Data <strong>vanishes</strong> post-session.
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+                    <!-- Personal Information -->
+                    <div id="personalInfoCard" class="card mb-4">
+                      <div class="card-body">
+                        <h4 class="card-title mb-3">Personal Information</h4>
+                            <div class="row mb-3">
+                              <div class="col-md-6">
+                                <label for="age" class="form-label">Current Age</label>
+                                <input type="number" class="form-control" id="age" name="age" 
+                                       min="1" max="99" maxlength="2" required>
+                              </div>
+                              <div class="col-md-6">
+                                <label for="retirementAge" class="form-label">Target Retirement Age</label>
+                                <input type="number" class="form-control" id="retirementAge" name="retirementAge" 
+                                       min="50" max="99" maxlength="2" required>
+                              </div>
+                            </div>
+                            <div class="row mb-3">
+                              <div class="col-md-6">
+                                <label for="country" class="form-label">Country of Residence</label>
+                                <select class="form-select" id="country" name="country" required>
+                                  <option value="" selected disabled></option>
+                                  <option value="US">🇺🇸 United States</option>
+                                  <option value="CN">🇨🇳 China</option>
+                                  <option value="IN">🇮🇳 India</option>
+                                  <option value="UK">🇬🇧 United Kingdom</option>
+                                  <option value="DE">🇩🇪 Germany</option>
+                                  <option value="FR">🇫🇷 France</option>
+                                  <option value="IT">🇮🇹 Italy</option>
+                                  <option value="ES">🇪🇸 Spain</option>
+                                  <option value="CA">🇨🇦 Canada</option>
+                                  <option value="AU">🇦🇺 Australia</option>
+                                  <option value="JP">🇯🇵 Japan</option>
+                                  <option value="BR">🇧🇷 Brazil</option>
+                                  <option value="RU">🇷🇺 Russia</option>
+                                  <option value="MX">🇲🇽 Mexico</option>
+                                  <option value="NL">🇳🇱 Netherlands</option>
+                                </select>
+                              </div>
+                              <div class="col-md-6">
+                                <label for="income" class="form-label">Annual Income</label>
+                                <div class="input-group">
+                                  <span class="input-group-text" id="currency-symbol"></span>
+                                  <input type="text" class="form-control" id="income" name="income" required>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+
+<!-- Risk Tolerance -->
+<div id="riskToleranceCard" class="card mb-4">
+  <div class="card-body">
+    <h4 class="card-title mb-3">Risk Tolerance</h4>
+    <div class="mb-3">
+      <label for="riskTolerance" class="form-label">Risk Tolerance (1-10)</label>
+      <input type="range" class="form-range" min="1" max="10" id="riskTolerance" name="riskTolerance">
+    </div>
+  </div>
+</div>
+
+<!-- Mortgage Information -->
+<div id="mortgageInfoCard" class="card mb-4">
+  <div class="card-body">
+    <h4 class="card-title mb-3">Mortgage Information</h4>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="mortgageBalance" class="form-label">Mortgage Balance</label>
+        <div class="input-group">
+          <span class="input-group-text" id="mortgage-currency-symbol"></span>
+          <input type="text" class="form-control" id="mortgageBalance" name="mortgageBalance">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="mortgageRate" class="form-label">Interest Rate (%)</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="mortgageRate" name="mortgageRate" max="100">
+          <span class="input-group-text">%</span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="mortgageYearsLeft" class="form-label">Years Left on Mortgage</label>
+        <input type="number" class="form-control" id="mortgageYearsLeft" name="mortgageYearsLeft">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="monthlyRepayment" class="form-label">Monthly Repayment Amount</label>
+        <div class="input-group">
+          <span class="input-group-text" id="monthly-repayment-currency-symbol"></span>
+          <input type="text" class="form-control" id="monthlyRepayment" name="monthlyRepayment">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="renewalDate" class="form-label">Renewal Date</label>
+        <input type="date" class="form-control" id="renewalDate" name="renewalDate">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Existing Funds and ISA -->
+<div id="existingFundsCard" class="card mb-4">
+  <div class="card-body">
+    <h4 class="card-title mb-3">Existing Funds and Net Worth</h4>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label class="form-label">Have you used your ISA allowance for this year?</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="isaAllowance" id="isaYes" value="yes">
+          <label class="form-check-label" for="isaYes">Yes</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="isaAllowance" id="isaNo" value="no">
+          <label class="form-check-label" for="isaNo">No</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="isaBalance" class="form-label">Current ISA Balance</label>
+        <div class="input-group">
+          <span class="input-group-text" id="isa-currency-symbol"></span>
+          <input type="text" class="form-control" id="isaBalance" name="isaBalance">
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="totalInvestments" class="form-label">Total Value of All Investments (including ISAs, Funds etc.)</label>
+        <div class="input-group">
+          <span class="input-group-text" id="investments-currency-symbol"></span>
+          <input type="text" class="form-control" id="totalInvestments" name="totalInvestments">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="pensionValue" class="form-label">Total Pension Pot Value</label>
+        <div class="input-group">
+          <span class="input-group-text" id="pension-currency-symbol"></span>
+          <input type="text" class="form-control" id="pensionValue" name="pensionValue">
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="monthlyPensionContribution" class="form-label">Monthly Pension Contribution</label>
+        <div class="input-group">
+          <span class="input-group-text" id="pension-contribution-currency-symbol"></span>
+          <input type="text" class="form-control" id="monthlyPensionContribution" name="monthlyPensionContribution">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="otherAssets" class="form-label">Value of Other Assets</label>
+        <div class="input-group">
+          <span class="input-group-text" id="other-assets-currency-symbol"></span>
+          <input type="text" class="form-control" id="otherAssets" name="otherAssets">
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="existingFunds" class="form-label">List your existing investment funds (comma-separated)</label>
+      <textarea class="form-control" id="existingFunds" name="existingFunds" rows="3" placeholder="e.g., Global Equity Fund, UK Bond Fund, Emerging Markets ETF"></textarea>
+    </div>
+  </div>
+</div>
+
+<button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+</form>
+
+<div class="card mt-4" style="display: none;">
+  <div class="card-body">
+   <h5 class="card-title">Recommendation</h5>
+   <div id="APIresponse">
+    <textarea class="form-control w-100" rows="1" id="recommendationText" readonly></textarea>
+   </div>
+  </div>
+ </div>
+
+</div>
+</div>
+</section>
+</main>
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.min.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/form.js"></script>
+  <script src="assets/js/ai.js"></script>
+</body>
+</html>
