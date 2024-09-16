@@ -5,7 +5,7 @@ const fetch = require('node-fetch'); // Only if you're using Node.js < 18
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = process.env.PORT || 1000;
+const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.static(path.join(__dirname)));
