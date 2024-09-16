@@ -15,14 +15,16 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+let conversationHistory = [];
+
 app.post('/api/openai', async (req, res) => {
   const apiKey = process.env.OPENAI_API_KEY;
   const apiUrl = 'https://api.openai.com/v1/chat/completions';
 
   try {
-    const payload = {
-      model: "gpt-4",
-      messages: [
+    if (conversationHistory.length === 0) {
+      // Initial submission
+      conversationHistory = [
         {
           role: "system",
           content: "You are a financial advisor. Analyze the following financial information and provide advice."
@@ -31,7 +33,18 @@ app.post('/api/openai', async (req, res) => {
           role: "user",
           content: JSON.stringify(req.body)
         }
-      ]
+      ];
+    } else {
+      // Follow-up question
+      conversationHistory.push({
+        role: "user",
+        content: req.body.message
+      });
+    }
+
+    const payload = {
+      model: "gpt-3.5-turbo",
+      messages: conversationHistory
     };
 
     console.log('Sending request to OpenAI:', JSON.stringify(payload, null, 2));
@@ -55,7 +68,12 @@ app.post('/api/openai', async (req, res) => {
     console.log('OpenAI API response:', JSON.stringify(result, null, 2));
 
     if (result.choices && result.choices.length > 0 && result.choices[0].message) {
-      res.json({ response: result.choices[0].message.content });
+      const aiResponse = result.choices[0].message.content;
+      conversationHistory.push({
+        role: "assistant",
+        content: aiResponse
+      });
+      res.json({ response: aiResponse });
     } else {
       res.status(500).json({ error: 'Unexpected API response structure' });
     }

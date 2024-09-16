@@ -43,7 +43,7 @@
       <ul class="list-unstyled">
         <li class="mb-2">
           <span class="text-primary me-2">🔒</span>
-          <strong>Privacy first!</strong> No accounts, no names.
+          <strong>Privacy first!</strong> No accounts or names.
         </li>
         <li class="mb-2">
           <span class="text-primary me-2">💼</span>
@@ -229,12 +229,15 @@
 
 <div class="card mt-4" style="display: none;">
   <div class="card-body">
-   <h5 class="card-title">Recommendation</h5>
-   <div id="APIresponse">
-    <textarea class="form-control w-100" rows="1" id="recommendationText" readonly></textarea>
-   </div>
+    <h5 class="card-title">Recommendation and Q&A</h5>
+    <div id="conversationHistory"></div>
+    <div class="input-group mt-3">
+      <textarea id="userInput" class="form-control" placeholder="Type your question here..."></textarea>
+      <button id="sendButton" class="btn btn-primary">Send</button>
+    </div>
   </div>
- </div>
+</div>
+
 
 </div>
 </div>
